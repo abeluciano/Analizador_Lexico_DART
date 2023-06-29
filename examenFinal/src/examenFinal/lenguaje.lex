@@ -19,67 +19,32 @@ System.out.println(lexema + " - " + descripcion);
 * Ajustes regulares
 */
 BLANCO = [\n| |\t]
-IDENTIFICADOR = [_a-zA-Z][_a-zA-Z0-9]*
-CADENA = \"([^\\\n]|(\\.))*?\"
-CARACTER = \'([^\\\n]|(\\.))\'
+NOMBRE_VARIBLE = [_a-zA-Z][_a-zA-Z0-9]*
+CADENA = '[_a-zA-Z][_a-zA-Z0-9]*'
+CARACTER = '[_a-zA-Z0-9]'
 NUMERO_ENTERO = 0|[1-9][0-9]*
 NUMERO_FLOTANTE = [0-9]+(\.[0-9]+)?
 OPERADORES_MATEMATICOS = ("+" | "-" | "*" | "/")
 BOOL = (true|false)
-VAR = [a-zA-Z_][a-zA-Z0-9_]*
 LIST = \[[^\]]*\]
 MAP = \{[^\}]*\}
 OBJECT = \{[^\}]*\}
 SET = \{[^\}]*\}
 FUNCTION = \w+\([^\)]*\)
-CLASS = \w+
 NUM = -?[0-9]+(\.[0-9]+)?
-ENUM = \w+
-TYPEDEF = \w+
 DATETIME= \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}
 DURATION = \d+:\d+:\d+
 ITERABLE = \w+\[\]
-ITERATOR = \w+
-GENERATOR = \w+
-REGEXP = .+
-EXCEPTION = \w+
-STREAM = \w+
-STREAMCONTROLLER = \w+
-INT32X4 = \w+
 
 
 %%
-{BLANCO} { imprimir("Espacio en blanco", yytext()); }
-{BOOL} { imprimir("Booleano", yytext()); }
-{VAR} { imprimir("Alfanumerico", yytext()); }	
-{IDENTIFICADOR} { imprimir("Identificador", yytext()); }
-{CADENA} { imprimir("Cadena de texto", yytext()); }
-{CARACTER} { imprimir("Carácter", yytext()); }
-{NUMERO_ENTERO} { imprimir("Número entero", yytext()); }
-{NUMERO_FLOTANTE} { imprimir("Número flotante", yytext()); }
-{OPERADORES_MATEMATICOS} { imprimir("Operador matemático", yytext()); }
-{LIST} { imprimir("Lista", yytext()); }
-{MAP} { imprimir("Mapa", yytext()); }
-{OBJECT} { imprimir("Objeto", yytext()); }
-{SET} { imprimir("Cojunto", yytext()); }
-{FUNCTION} { imprimir("Funcion", yytext()); }
-{CLASS} { imprimir("Clase", yytext()); }
-{NUM} { imprimir("Numero", yytext()); }
-{ENUM} { imprimir("Enumeracion", yytext()); }
-{TYPEDEF} { imprimir("Tipo definido", yytext()); }
-{DATETIME} { imprimir("Fecha y hora", yytext()); }
-
-{DURATION} { imprimir("Durción en horas, minutos y segundos", yytext()); }
-{ITERABLE} { imprimir("Tipo iterable", yytext()); }
-{ITERATOR} { imprimir("Tipo iterador", yytext()); }
-{GENERATOR} { imprimir("generador", yytext()); }
-{REGEXP} { imprimir("Expresion regular", yytext()); }
-{EXCEPTION} { imprimir("Excepcion", yytext()); }
-{STREAM} { imprimir("Flujo", yytext()); }
-{STREAMCONTROLLER} { imprimir("Controlador de Flujo", yytext()); }
-{INT32X4} { imprimir("Tipo 32x4", yytext()); }
-
+"void main()" { imprimir("Funcion Principal", yytext()); }
 "if" { imprimir("Instrucción if", yytext()); }
+"String" { imprimir("Variable String", yytext()); }
+"int" { imprimir("Varible int", yytext()); }
+"float" { imprimir("Variable Float", yytext()); }
+"double" { imprimir("Variable double", yytext()); }
+"var" { imprimir("varible alfanumerica", yytext()); }
 "else" { imprimir("Instrucción else", yytext()); }
 "for" { imprimir("Instrucción for", yytext()); }
 "while" { imprimir("Instrucción while", yytext()); }
@@ -90,7 +55,7 @@ INT32X4 = \w+
 "continue" { imprimir("Instrucción continue", yytext()); }
 "return" { imprimir("Instrucción return", yytext()); }
 "print" { imprimir("Instrucción print", yytext()); }
-"null" { imprimir("Valor nulo", yytext()); }	
+"null" { imprimir("Valor nulo", yytext()); }
 "==" { imprimir("Operador igualdad", yytext()); }
 "!=" { imprimir("Operador desigualdad", yytext()); }
 ">" { imprimir("Operador mayor que", yytext()); }
@@ -107,5 +72,22 @@ INT32X4 = \w+
 "]" { imprimir("Corchete derecho", yytext()); }
 "{" { imprimir("Llave izquierda", yytext()); }
 "}" { imprimir("Llave derecha", yytext()); }
+{BLANCO} { imprimir("Espacio en blanco", yytext()); }
+{NOMBRE_VARIBLE} { imprimir("Nombre de la variable", yytext()); }
+{BOOL} { imprimir("Booleano", yytext()); }
+{CADENA} { imprimir("Cadena de texto", yytext()); }
+{CARACTER} { imprimir("Carácter", yytext()); }
+{NUMERO_ENTERO} { imprimir("Número entero", yytext()); }
+{NUMERO_FLOTANTE} { imprimir("Número flotante", yytext()); }
+{OPERADORES_MATEMATICOS} { imprimir("Operador matemático", yytext()); }
+{LIST} { imprimir("Lista", yytext()); }
+{MAP} { imprimir("Mapa", yytext()); }
+{OBJECT} { imprimir("Objeto", yytext()); }
+{SET} { imprimir("Cojunto", yytext()); }
+{FUNCTION} { imprimir("Funcion", yytext()); }
+{NUM} { imprimir("Numero", yytext()); }
+{DATETIME} { imprimir("Fecha y hora", yytext()); }
+{DURATION} { imprimir("Durción en horas, minutos y segundos", yytext()); }
+{ITERABLE} { imprimir("Tipo iterable", yytext()); }
 . { throw new RuntimeException("Caracter inválido \""+yytext() +
 "\" en la línea "+yyline+", columna "+yycolumn); }
