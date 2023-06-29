@@ -17,6 +17,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.TextArea;
 
 public class GUIAnalizadorLexico {
 
@@ -53,35 +54,57 @@ public class GUIAnalizadorLexico {
 		frame.setBounds(100, 100, 530, 550);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JButton btnAnalizar = new JButton("Analizar");
-		btnAnalizar.setBounds(283, 30, 198, 42);
-		btnAnalizar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		
-		JButton btnLimpiar = new JButton("Limpiar");
-		btnLimpiar.setBounds(283, 90, 198, 42);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(265, 162, 239, 321);
-		
 		JLabel lblNewLabel = new JLabel("Hecho por: aaragona@ulasalle.edu.pe");
-		lblNewLabel.setBounds(10, 486, 237, 14);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(10, 11, 248, 472);
+		
+		JButton btnLimpiar = new JButton("Limpiar");
+		
+		JButton btnAnalizar = new JButton("Analizar");
+		
+		JScrollPane scrollPane = new JScrollPane();
+		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(1)
+							.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 248, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(18)
+									.addComponent(btnAnalizar, GroupLayout.PREFERRED_SIZE, 198, GroupLayout.PREFERRED_SIZE))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(18)
+									.addComponent(btnLimpiar, GroupLayout.PREFERRED_SIZE, 198, GroupLayout.PREFERRED_SIZE))
+								.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 239, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 237, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap(22, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(btnAnalizar, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(btnLimpiar, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+							.addGap(30)
+							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 321, GroupLayout.PREFERRED_SIZE))
+						.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 472, GroupLayout.PREFERRED_SIZE))
+					.addGap(3)
+					.addComponent(lblNewLabel))
+		);
 		
 		JTextArea textArea = new JTextArea();
 		scrollPane_1.setViewportView(textArea);
 		
 		List list = new List();
 		scrollPane.setViewportView(list);
-		frame.getContentPane().setLayout(null);
-		frame.getContentPane().add(lblNewLabel);
-		frame.getContentPane().add(scrollPane_1);
-		frame.getContentPane().add(btnLimpiar);
-		frame.getContentPane().add(btnAnalizar);
-		frame.getContentPane().add(scrollPane);
+		frame.getContentPane().setLayout(groupLayout);
 	}
 }
