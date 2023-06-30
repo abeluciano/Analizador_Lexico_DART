@@ -12,7 +12,6 @@ public class Prueba {
 		try {
 			lexico.yylex();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

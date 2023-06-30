@@ -1,6 +1,8 @@
 package examenFinal;
 
 import java.awt.EventQueue;
+import java.io.IOException;
+import java.io.StringReader;
 
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
@@ -15,14 +17,18 @@ import java.awt.ScrollPane;
 import java.awt.List;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
+import java.io.StringReader;
 import java.awt.event.ActionEvent;
 import java.awt.TextArea;
 
-public class GUIAnalizadorLexico {
+public class GUIAnalizadorLexico extends JFrame implements ActionListener {
 
-	private JFrame frame;
-
+	private JTextArea textArea;
+	JButton btnLimpiar, btnAnalizar;
+	private JTextArea textArea_1;
 	/**
 	 * Launch the application.
 	 */
@@ -31,7 +37,7 @@ public class GUIAnalizadorLexico {
 			public void run() {
 				try {
 					GUIAnalizadorLexico window = new GUIAnalizadorLexico();
-					window.frame.setVisible(true);
+					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -50,20 +56,27 @@ public class GUIAnalizadorLexico {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 530, 550);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		setBounds(100, 100, 530, 550);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		IniciarComponentes();
+		setTitle("Analizador Lexico");
+		setLocationRelativeTo(null);
+		setResizable(false);
+	}
+
+	private void IniciarComponentes() {
 		JLabel lblNewLabel = new JLabel("Hecho por: aaragona@ulasalle.edu.pe");
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		
-		JButton btnLimpiar = new JButton("Limpiar");
+		btnLimpiar = new JButton("Limpiar");
+		btnLimpiar.addActionListener(this);
 		
-		JButton btnAnalizar = new JButton("Analizar");
+		btnAnalizar = new JButton("Analizar");
+		btnAnalizar.addActionListener(this);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
@@ -100,11 +113,29 @@ public class GUIAnalizadorLexico {
 					.addComponent(lblNewLabel))
 		);
 		
-		JTextArea textArea = new JTextArea();
-		scrollPane_1.setViewportView(textArea);
+		textArea_1 = new JTextArea();
+		scrollPane.setViewportView(textArea_1);
 		
-		List list = new List();
-		scrollPane.setViewportView(list);
-		frame.getContentPane().setLayout(groupLayout);
+		textArea = new JTextArea();
+		scrollPane_1.setViewportView(textArea);
+		getContentPane().setLayout(groupLayout);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(btnAnalizar == e.getSource()) {
+			String expresion = textArea.getText();
+			AnalizadorLexico lexico = new AnalizadorLexico(new StringReader(expresion));
+			try {
+				lexico.yylex();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			textArea_1.setText(expresion);
+		}
+		if(btnLimpiar == e.getSource()) {
+			
+			//textArea_1.cut();
+		}
 	}
 }
