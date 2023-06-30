@@ -18,7 +18,7 @@ System.out.println(lexema + " - " + descripcion);
 /*-*
 * Ajustes regulares
 */
-BLANCO = [\n| |\t]
+BLANCO = [\n| |\t] [\r]
 NOMBRE_VARIBLE = [_a-zA-Z][_a-zA-Z0-9]*
 CADENA = '[_a-zA-Z][_a-zA-Z0-9]*'
 CARACTER = '[_a-zA-Z0-9]'

@@ -125,17 +125,16 @@ public class GUIAnalizadorLexico extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(btnAnalizar == e.getSource()) {
 			String expresion = textArea.getText();
-			AnalizadorLexico lexico = new AnalizadorLexico(new StringReader(expresion));
+			AnalizadorLexico lexico = new AnalizadorLexico(new StringReader(expresion), textArea_1);
 			try {
-				lexico.yylex();
+				 lexico.yylex();
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
-			textArea_1.setText(expresion);
 		}
 		if(btnLimpiar == e.getSource()) {
 			
-			//textArea_1.cut();
+			textArea_1.setText("");
 		}
 	}
 }
