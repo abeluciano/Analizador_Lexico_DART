@@ -982,6 +982,7 @@ public class AnalizadorLexico {
 	      this.zzReader = in;
 	    }
 
+
   /** 
    * Unpacks the compressed character translation table.
    *
@@ -1282,7 +1283,7 @@ public class AnalizadorLexico {
 
       if (zzInput == YYEOF && zzStartRead == zzCurrentPos) {
         zzAtEOF = true;
-        return ;
+        return;
       }
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
