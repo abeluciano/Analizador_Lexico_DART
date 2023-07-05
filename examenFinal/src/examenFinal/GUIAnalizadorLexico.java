@@ -134,7 +134,7 @@ public class GUIAnalizadorLexico extends JFrame implements ActionListener {
 		}
 		if(btnLimpiar == e.getSource()) {
 			
-			textArea_1.setText("");
+			textArea_1.setText(null);
 		}
 	}
 }
